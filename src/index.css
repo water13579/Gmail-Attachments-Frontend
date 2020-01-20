@@ -1,0 +1,15 @@
+/* @import "compass/css3" */
+
+
+
+body{
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+}
+
+/* html {
+  font-family: sans-serif;
+  background:linear-gradient(90deg, #6997d3 8px, transparent 1%), linear-gradient(#6997d3 8px, transparent 1%);
+  background-size: 10px 10px;
+} */
