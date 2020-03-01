@@ -34,9 +34,9 @@ class Form extends React.Component {
       }).then(res => {
         return res.json()
       }).then(res => {
-        this.setState({loading: false})
         const msg = res.type === 'no' ? 'error' : 'success'
         this.props.handleConnectionAlertState(true, msg)
+        this.setState({loading: false})
         if (msg === 'success') {
           this.setPageState('main')
           this.setCredentials({password: this.state.password, username: this.state.username})

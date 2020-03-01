@@ -27,19 +27,18 @@ body {
 }
 
 #checkboxTreeWrapper {
-  width: 30%;
+  width: fit-content;
   background-color: white;
   position: relative;
   border-radius: 30px; 
   box-shadow: 0px 0px 8px;
-  margin: 10% auto 0 auto;
-  display: inline-block;
+  margin: 10% auto;
   padding: 30px 0;
 }
 
 #checkboxTreeWrapper > div {
   width: fit-content;
-  margin-left: 10px;
+  margin: 0 10px;
 }
 
 h2 {

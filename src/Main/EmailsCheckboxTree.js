@@ -1,7 +1,5 @@
 import React from "react";
 import CheckboxTree from 'react-checkbox-tree'
-import { find } from 'lodash'
-
 
 class EmailsCheckboxTree extends React.Component {
 
@@ -13,53 +11,35 @@ class EmailsCheckboxTree extends React.Component {
       checked: [],
       expanded: []
     }
+    // this.populateCheckbox = this.populateCheckbox.bind(this)
   }
 
   componentWillReceiveProps(nextProps) {
-    const newEmails = this.populateCheckbox(nextProps.emails)
+    console.log(nextProps)
+    // const newEmails = populateCheckbox(nextProps.emails)
     this.setState({
-      checkboxNodes: newEmails,
+      checkboxNodes: nextProps.emails,
       emails: nextProps.emails
     })
   }
 
-  // orderEmails = emails => {
-  //   return emails.reduce((emailsStruct, email) => {
-  //     const body = find(email.parts, {which: 'HEADER'}).body
-  //     const sender = body.from[0]
-  //     const subject = body.subject[0]
-  //     if (emailsStruct[sender] === undefined) {
-  //       emailsStruct[sender] = [{subject: subject, body: body}]
-  //     } else {
-  //       emailsStruct[sender].push({subject: subject, body: body})
-  //     }
-  //     return emailsStruct
-  //   }, {})
-  // }
-
-  populateCheckbox = emailsMapping => {
-    return Object.entries(emailsMapping).map(([sender, emails]) => ({
-        value: sender,
-        label: /<.*>/.exec(sender).pop().slice(1, -1).toUpperCase(),
-        children: emails.map(email => ({value: email.subject, label: email.subject}))
-    }))
-  }
-
   render() {
     return (
-      <div className="managingRow">
-        <div id='checkboxTreeWrapper' >
-          <CheckboxTree 
-            nodes={this.state.checkboxNodes}
-            checked={this.state.checked}
-            expanded={this.state.expanded}
-            onCheck={checked => this.setState({checked})}
-            onExpand={expanded => this.setState({expanded})}
-          />
-        </div>
+      <div id='checkboxTreeWrapper' >
+        <CheckboxTree 
+          checkModel='leaf'
+          nodes={this.state.checkboxNodes}
+          checked={this.state.checked}
+          expanded={this.state.expanded}
+          onCheck={checked => {
+            this.setState({checked})
+            this.props.handleChecked(checked)
+          }}
+          onExpand={expanded => this.setState({expanded})}
+        />
       </div>
     )
   }
 }
-  
+
 export default EmailsCheckboxTree
